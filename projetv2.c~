@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h> 
+#include "projet.h"
+int SIZE=3;
+char*** init_tuiles(char** tab){
+  int i;
+  int k;
+  int n;
+  srand(time(NULL));
+  int a=rand()%SIZE-1+0;
+  srand(time(NULL));
+  int b=rand()%SIZE-1+0;
+ 
+ /* création du tableau tuiles*/
+  char*** tuiles=malloc(SIZE*sizeof(char**));
+  for(k=0;k<SIZE;k++){
+    tuiles[k]=malloc(SIZE*sizeof(char*));
+    for(i=0;i<SIZE;i++){
+      tuiles[k][i]="vide";    /*les cases du tableau sont initialisées à "vide"*/
+  }
+  
+  for(k=0;k<n;k++){
+    while(strcmp(tuiles[a][b],"vide")!=0){
+      srand(time(NULL));
+      a=rand()%SIZE-1+0;
+      srand(time(NULL));
+      b=rand()%SIZE-1+0;
+    }
+    tuiles[a][b]=tab[k];
+    while(strcmp(tuiles[a][b],"vide")!=0){
+      srand(time(NULL));
+      a=rand()%SIZE-1+0;
+      srand(time(NULL));
+      b=rand()%SIZE-1+0;
+    }
+    tuiles[a][b]=tab[k];
+  }
+  }
+  return tuiles;
+}
+
+int main(void){
+  int i;
+  int j;
+   if(SIZE%2==0){
+    n=SIZE*SIZE/2;
+  }
+  else{
+    n=SIZE*SIZE/2-1;
+  }
+  /*création d'un tableau tab qui contiendra toutes les tuiles saisies par l'utilisateur */
+  char** tab=malloc(n*sizeof(char*));
+  printf("%d tuiles à créer :\n",n);
+  for(k=0;k<n;k++){
+    printf("la valeur de la tuile numéro %d ",k);
+    scanf(": %s",&tab[k]);
+    printf("\n");
+    }
+  char*** tuiles=init_tuiles(tab);
+  for(i=0;i<SIZE;i++){
+    for(j=0;j<SIZE;j++){
+      printf("%s ",tuiles[i][j]);
+    }
+    printf("\n");
+  }
+  return 0;
+}
+
+      
+    
+    
+
+  
+ 
+  
+    
